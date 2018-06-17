@@ -1,0 +1,95 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+typedef struct enderecos{
+    char logradouro[20];
+    char complemento[20];
+    char bairro[10];
+    char cep[10];
+    char cidade[20];
+    char estado[3];
+}ENDERECO;
+
+
+typedef struct clientes{
+    int codigo;
+    char nome[20];
+    char cnpj_cpf[15];
+    ENDERECO end;
+ }CLIENTE;
+
+
+ typedef struct contas{
+    int agencia;
+    int codigo;
+    double saldo;
+    cliente clientee;
+ }CONTA;
+
+ typedef struct transacoes{
+    char tipo[8];
+    char data[11];
+    char descricao[101];
+    double valor;
+    conta contaa;
+ }TRANSACAO;
+//nem todas as funçoes sao void. So criei void pra facilitar na escrita, mas muda isso depois
+ void menu();
+
+ void gerenciarClientes();
+ void gerenciarContas();
+ void cadastrarCliente();
+
+ void listarTodosClientes();
+ void buscarClienteCadastrado();
+ void atualizarClienteCadastrado();
+ void excluirClienteCadastrado();
+
+ void listagemTodasContasCadastradas();
+ void cadastrarContaParaCliente();
+ void listarTodasContasCliente();
+ void realizarUmSaqueNumaConta();
+ void realizarUmDepositoNumaConta();
+ void realizarTransferenciaEntreContas();
+ void exibirExtratoConta();
+
+
+ int main(){
+
+
+
+ 	return 0;
+ }
+
+ void menu(){
+ 	printf("Digite um comando para prosseguir:\n");
+ 	printf("C - Gerenciar Clientes\n");
+ 	printf("T - Gerenciar Contas\n");
+ 	printf("S - Sair\n");
+ }
+ void gerenciarClientes(){
+    printf("Digite um comando para prosseguir:\n");
+ 	printf("C - Cadastrar um cliente\n");
+ 	printf("L - Listar todos os clientes cadastrados\n");
+ 	printf("B - Buscar cliente ja cadastrado\n");
+    printf("A - Atualizar um cliente já cadastrado\n");
+ 	printf("E - Excluir um cliente cadastrado\n");
+ }
+
+  void gerenciarContas(){
+    printf("Digite um comando para prosseguir:\n");
+ 	printf("R - Listagem de todas as contas cadastradas\n");
+ 	printf("C - Cadastrar uma conta para um cliente\n");
+ 	printf("L - Listar todas as contas de um cliente\n");
+    printf("S - Realizar um saque em uma conta\n");
+ 	printf("D - Realizar um deposito em uma conta\n");
+    printf("T - Realizar transferencia entre contas\n");
+ 	printf("E - Exibir extato de uma conta\n");
+  }
+  void cadastrarCliente(CLIENTE *pessoa){
+        scanf("%d", &pessoa->codigo);
+        gets(pessoa->nome);
+        gets(pessoa->cnpj_cpf);
+
+  }
