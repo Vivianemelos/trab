@@ -1,0 +1,141 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define leia scanf
+#define imprima printf
+
+typedef struct enderecos{
+    char logradouro[20];
+    char complemento[20];
+    char bairro[10];
+    char cep[10];
+    char cidade[20];
+    char estado[3];
+}e;
+
+
+typedef struct clientes{
+    int codigo;
+    char nome[20];
+    char cnpj_cpf[15];
+    e end;
+ }c;
+
+
+ typedef struct contas{
+    int agencia;
+    int codigo;
+    double saldo;
+    c cliente;
+ }co;
+
+ typedef struct transacoes{
+    char tipo[8];
+    char data[11];
+    char descricao[101];
+    double valor;
+    c conta;
+ }t;
+//nem todas as funçoes sao void. So criei void pra facilitar na escrita, mas muda isso depois
+ void menu();
+
+ void gerenciarClientes();
+ void gerenciarContas();
+ void cadastrarCliente();
+
+ void listarTodosClientes();
+ void buscarClienteCadastrado();
+ void atualizarClienteCadastrado();
+ void excluirClienteCadastrado();
+
+ void listagemTodasContasCadastradas();
+ void cadastrarContaParaCliente();
+ void listarTodasContasCliente();
+ void realizarUmSaqueNumaConta();
+ void realizarUmDepositoNumaConta();
+ void realizarTransferenciaEntreContas();
+ void exibirExtratoConta();
+
+
+ int main(){
+    c var_cliente;
+	co var_conta;
+	t var_transacao;
+
+	int opcao;
+
+    //imprima("\nInforme o logradouro: ");
+      //  leia(" %[^\n]s", var_cliente.end.logradouro);
+
+	do{
+		//scanf("%c",&opcao);
+		menu();
+		scanf("%d",&opcao);
+		if(opcao==1){
+			gerenciarClientes();
+			scanf("%d",&opcao);
+
+			if(opcao==1){
+                cadastrarCliente(&var_cliente);
+
+			}
+		}
+	}while(opcao!=0);
+
+
+ 	return 0;
+ }
+
+ void menu(){
+ 	printf("Digite um comando para prosseguir:\n");
+ 	printf("C - Gerenciar Clientes\n");
+ 	printf("T - Gerenciar Contas\n");
+ 	printf("S - Sair\n");
+ }
+ void gerenciarClientes(){
+    printf("Digite um comando para prosseguir:\n");
+ 	printf("C - Cadastrar um cliente\n");
+ 	printf("L - Listar todos os clientes cadastrados\n");
+ 	printf("B - Buscar cliente ja cadastrado\n");
+    printf("A - Atualizar um cliente já cadastrado\n");
+ 	printf("E - Excluir um cliente cadastrado\n");
+ }
+
+  void gerenciarContas(){
+    printf("Digite um comando para prosseguir:\n");
+ 	printf("R - Listagem de todas as contas cadastradas\n");
+ 	printf("C - Cadastrar uma conta para um cliente\n");
+ 	printf("L - Listar todas as contas de um cliente\n");
+    printf("S - Realizar um saque em uma conta\n");
+ 	printf("D - Realizar um deposito em uma conta\n");
+    printf("T - Realizar transferencia entre contas\n");
+ 	printf("E - Exibir extato de uma conta\n");
+  }
+  void cadastrarCliente(c *ponteiro_cliente){
+        imprima("Informe o codigo: ");
+        leia("%d",ponteiro_cliente->codigo);
+
+        imprima("\nInforme o nome: ");
+        leia(" %[^\n]s", ponteiro_cliente->nome);
+
+        imprima("\nInforme o CNPJ/CPF: ");
+        leia(" %[^\n]s", ponteiro_cliente->cnpj_cpf);
+
+        imprima("\nInforme o logradouro: ");
+        leia(" %[^\n]s", ponteiro_cliente->end.logradouro);
+
+        imprima("\nInforme o nome: ");
+        leia(" %[^\n]s", ponteiro_cliente->end.complemento);
+
+        imprima("\nInforme o bairro: ");
+        leia(" %[^\n]s", ponteiro_cliente->end.bairro);
+
+        imprima("\nInforme o cep: ");
+        leia(" %[^\n]s", ponteiro_cliente->end.cep);
+
+        imprima("\nInforme a cidade: ");
+        leia(" %[^\n]s", ponteiro_cliente->end.cidade);
+
+        imprima("\nInforme o estado: ");
+        leia(" %[^\n]s", ponteiro_cliente->end.estado);
+  }
